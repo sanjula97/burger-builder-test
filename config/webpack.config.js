@@ -50,6 +50,8 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+
+
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
@@ -80,8 +82,10 @@ module.exports = function(webpackEnv) {
           : {},
       },
       {
-        loader: require.resolve('css-loader'),
-        options: cssOptions,
+        test: /\.css$/,
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]' 
+        // loader: require.resolve('css-loader'),
+        // options: cssOptions,
       },
       {
         // Options for PostCSS as we reference these options twice
